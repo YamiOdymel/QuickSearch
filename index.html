@@ -1,0 +1,24 @@
+<p>Searching for ..</p>
+<span id="target"></span>
+<div id="result">Haneda</div>
+<div id="result">Caris</div>
+<div id="result">Aoi</div>
+<div id="result">Orenji</div>
+
+<input id="search-input" onkeyup="Search()" placeholder="Enter text here...">
+
+<script>
+function $_(ID){ return document.getElementById(ID); }
+function Search()
+{
+    var InputVal = $('search-input').value;
+    $_('target').innerHTML = InputVal;
+    
+    var Result = document.querySelectorAll('#result');
+    for(var i in Result)
+    {
+        var InputCheck = new RegExp(InputVal);
+        (InputCheck.test(Result[i].innerHTML)) ? Result[i].style.display = '' : Result[i].style.display = 'none';
+    }
+}
+</script>
