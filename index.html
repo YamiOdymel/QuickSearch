@@ -5,20 +5,27 @@
 <div id="result">Aoi</div>
 <div id="result">Orenji</div>
 
-<input id="search-input" onkeyup="Search()" placeholder="Enter text here...">
+<input id="search-input" onkeyup="search()" placeholder="Enter text here...">
 
 <script>
-function $_(ID){ return document.getElementById(ID); }
-function Search()
+/** Selector for shorthand use */
+function $_(element){ return document.querySelectorAll(element); }
+
+function search()
 {
-    var InputVal = $('search-input').value;
-    $_('target').innerHTML = InputVal;
+    /** Get value of search-input */
+    var val = $_('#search-input').value
     
-    var Result = document.querySelectorAll('#result');
-    for(var i in Result)
-    {
-        var InputCheck = new RegExp(InputVal);
-        (InputCheck.test(Result[i].innerHTML)) ? Result[i].style.display = '' : Result[i].style.display = 'none';
-    }
+    /** Set #target content as same as search-input */
+    $_('#target').innerHTML = val
+    
+    /** Get all of the spans, so we can search it later */
+    var result = $_('#result')
+    
+    /** Validate all of the spans */
+    for(var i in result)
+        /** If this one's content same as what we are looking for, leave it, hide others */
+        (new RegExp(val).test(result[i].innerHTML)) ? result[i].style.display = '' 
+                                                    : result[i].style.display = 'none'
 }
 </script>
