@@ -10,22 +10,21 @@
 <script>
 /** Selector for shorthand use */
 function $_(element){ return document.querySelectorAll(element); }
-
 function search()
 {
     /** Get value of search-input */
-    var val = $_('#search-input').value
-    
+    var val = $_('#search-input')[0].value
+
     /** Set #target content as same as search-input */
-    $_('#target').innerHTML = val
+    $_('#target')[0].innerHTML = val
     
     /** Get all of the spans, so we can search it later */
-    var result = $_('#result')
+    var result = document.querySelectorAll('#result')
     
     /** Validate all of the spans */
-    for(var i in result)
+    for(var i=0; i<result.length; i++)
         /** If this one's content same as what we are looking for, leave it, hide others */
-        (new RegExp(val).test(result[i].innerHTML)) ? result[i].style.display = '' 
-                                                    : result[i].style.display = 'none'
+        result[i].style.display = (new RegExp(val).test(result[i].innerHTML)) ? '' 
+                                                                              : 'none'
 }
 </script>
